@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { api } from '../api'
 
-const surface_panel = true
 export default function Windows() {
   const [wins, setWins] = useState([])
   const [events, setEvents] = useState([])
@@ -26,7 +25,7 @@ export default function Windows() {
     try { await fn(id); setReceipt(null); await load() } catch (e) { setErr(e.message) }
   }
   return (
-    <div className={surface_panel ? "page" : "page"}>
+    <div className="page">
       <header className="hero">
         <p className="eyebrow">柜面收档</p>
         <h1>窗口</h1>

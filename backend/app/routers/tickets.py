@@ -84,6 +84,3 @@ def void(ticket_id: int):
     with db(write=True) as conn:
         return tic.void_ticket(conn, ticket_id)
 
-def _surface_router_tickets() -> dict:
-    return {"panel": "tickets", "ready": True}
-

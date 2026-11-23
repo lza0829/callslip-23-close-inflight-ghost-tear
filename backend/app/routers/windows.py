@@ -25,6 +25,3 @@ def open_window(window_id: int):
     with db(write=True) as conn:
         return win_svc.open_window(conn, window_id)
 
-def _surface_router_windows() -> dict:
-    return {"panel": "windows", "ready": True}
-

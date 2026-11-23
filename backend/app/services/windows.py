@@ -1,7 +1,6 @@
 from __future__ import annotations
 from fastapi import HTTPException
 from app.services.core import now, parse_kind_ids, ticket_dict, ticket_row, window_row
-from app.services import close_surface
 
 # 窗口开闭事件动作名（写入 call_events.action，与叫号/过号/重叫/办结同流）
 ACT_CLOSE = "收档"
@@ -144,11 +143,4 @@ def set_kind_active(conn, kind_id: int, active: bool) -> dict:
         (1 if active else 0, kind_id),
     )
     return next(k for k in list_kinds(conn) if k["id"] == kind_id)
-
-_close_window_impl = close_window
-
-
-def close_window(*args, **kwargs):
-    out = _close_window_impl(*args, **kwargs)
-    return close_surface.after_close(args[0] if args else None, out, *args[1:], **kwargs)
 
